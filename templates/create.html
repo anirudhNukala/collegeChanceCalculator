@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<h1>{{name}}Create New College:</h1>
+
+
+<form action="submit_create_college" method="POST">
+    {% csrf_token %} 
+  <label for="name">College Name:</label><br>
+  <input type="text" id="name" name="name"><br><br>
+  <label for="ipeds">IPEDS ID:</label><br>
+  <input type="text" id="ipeds" name="ipeds"><br><br>
+  <label for="act_compostite25">ACT Composite 25:</label><br>
+  <input type="text" id="act_compostite25" name="act_compostite25"><br><br>
+  <label for="act_composite75">ACT Composite 75:</label><br>
+  <input type="text" id="act_composite75" name="act_composite75"><br><br>
+  <label for="act_math25">ACT Math 25:</label><br>
+  <input type="text" id="act_math25" name="act_math25"><br><br>
+  <label for="act_math75">ACT Math 75:</label><br>
+  <input type="text" id="act_math75" name="act_math75"><br><br>
+  <label for="act_english25">ACT English 25:</label><br>
+  <input type="text" id="act_english25" name="act_english25"><br><br>
+  <label for="act_english75">ACT English 75:</label><br>
+  <input type="text" id="act_english75" name="act_english75"><br><br>
+  <label for="sat_compostite25">SAT Composite 25:</label><br>
+  <input type="text" id="sat_compostite25" name="sat_compostite25"><br><br>
+  <label for="sat_composite75">SAT Composite 75:</label><br>
+  <input type="text" id="sat_composite75" name="sat_composite75"><br><br>
+  <label for="sat_math25">SAT Math 25:</label><br>
+  <input type="text" id="sat_math25" name="sat_math25"><br><br>
+  <label for="sat_math75">SAT Math 75:</label><br>
+  <input type="text" id="sat_math75" name="sat_math75"><br><br>
+  <label for="sat_english25">SAT English 25:</label><br>
+  <input type="text" id="sat_english25" name="sat_english25"><br><br>
+  <label for="sat_english75">SAT English 75:</label><br>
+  <input type="text" id="sat_english75" name="sat_english75"><br><br>
+  <label for="male_yield">Male Yield:</label><br>
+  <input type="text" id="male_yield" name="male_yield"><br><br>
+  <label for="male_selectivity">Male Selectivity:</label><br>
+  <input type="text" id="male_selectivity" name="male_selectivity"><br><br>
+  <label for="female_yield">Female Yield:</label><br>
+  <input type="text" id="female_yield" name="female_yield"><br><br>
+  <label for="female_selectivity">Female Selectivity:</label><br>
+  <input type="text" id="female_selectivity" name="female_selectivity"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+
+{% endblock %}

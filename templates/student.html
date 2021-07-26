@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %} 
+<h1>{{name}}Add New Student:</h1>
+<form action="submit_student" method="POST">
+    {% csrf_token %} 
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name"><br><br>
+  <label for="act_composite">ACT Composite:</label><br>
+  <input type="text" id="act_composite" name="act_composite"><br><br>
+  <label for="act_english">ACT English:</label><br>
+  <input type="text" id="act_english" name="act_english"><br><br>
+  <label for="act_math">ACT Math:</label><br>
+  <input type="text" id="act_math" name="act_math"><br><br>
+  <label for="sat_composite">SAT Composite:</label><br>
+  <input type="text" id="sat_composite" name="sat_composite"><br><br>
+  <label for="sat_english">SAT English:</label><br>
+  <input type="text" id="sat_english" name="sat_english"><br><br>
+  <label for="sat_math">SAT Math:</label><br>
+  <input type="text" id="sat_math" name="sat_math"><br><br>
+  <input type="submit" value="Submit">
+</form>
+<a href=".">BACK TO ALL COLLEGES</a> 
+{% endblock %}

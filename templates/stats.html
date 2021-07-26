@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %} 
+
+    <h2>College Stats
+    </h2>
+    <table style="width:100%" id="nba_table" class ="display">
+        <thead>
+          <tr>
+              <th>Stat</th>
+              <th>Value</th> 
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+               <td>Male Yield</td>
+               <td>{{stats.male_yield}}</td>
+          </tr>
+          <tr><td>Male Selectivity</td>
+            <td>{{stats.male_selectivity}}</td>
+        </tr>
+        <tr>
+            <td>Female Yield</td>
+            <td>{{stats.female_yield}}</td>
+       </tr>
+       <tr>
+        <td>Female Selectivity</td>
+        <td>{{stats.female_selectivity}}</td>
+        </tr>
+        <tr>
+            <td>ACT Composite 25th Percentile</td>
+            <td>{{scores.act_compostite25}}</td>
+       </tr>
+       <tr>
+        <td>ACT Composite 75th Percentile</td>
+        <td>{{scores.act_composite75}}</td>
+    </tr>
+    <tr>
+    <td>SAT Composite 25th Percentile</td>
+    <td>{{scores.sat_compostite25}}</td>
+    </tr>
+    <tr>
+        <td>SAT Composite 75th Percentile</td>
+        <td>{{scores.sat_composite75}}</td>
+   </tr>
+   <tr>
+    <td>ACT Math 25th Percentile</td>
+    <td>{{scores.act_math25}}</td>
+</tr>
+<tr>
+    <td>ACT English 25th Percentile</td>
+    <td>{{scores.act_english25}}</td>
+</tr>
+<tr>
+    <td>ACT Math 75th Percentile</td>
+    <td>{{scores.act_math75}}</td>
+</tr>
+<tr>
+    <td>ACT English 75th Percentile</td>
+    <td>{{scores.act_english75}}</td>
+</tr>
+<tr>
+    <td>SAT English 25th Percentile</td>
+    <td>{{scores.sat_english25}}</td>
+</tr>
+<tr>
+    <td>SAT English 75th Percentile</td>
+    <td>{{scores.sat_english75}}</td>
+</tr>
+<tr>
+    <td> English 25th Percentile</td>
+    <td>{{scores.act_english25}}</td>
+</tr>
+      </tbody>
+      </table>
+      <a href=".">BACK TO ALL COLLEGES</a> 
+      {% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %} 
+
+    <h2>College List</h2>
+    <table style="width:100%" id="nba_table" class ="display">
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>IPED ID</th> 
+          </tr>
+        </thead>
+        <tbody>
+        {% for college in colleges %}
+          <tr>
+              <td><a href=
+                'details?id={{college.id}}'>{{college.name}}</a></td>
+              <td>{{college.id}}</td>      
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <form action="collegecolor" method = 'post'>
+      {% csrf_token %}
+      <select name="studentlist" id="id">
+      {% for student in students %}
+      <option value={{student.id}}>{{student.name}}</option> 
+      {% endfor %}
+      </select>
+      <input type="submit" value = "Submit">
+    </form>
+      <a href="create">CREATE COLLEGE</a>
+      <a href="delete">DELETE COLLEGE</a>
+      <a href="studentlist">STUDENT LIST</a>
+      <a href="student">CREATE STUDENT</a>
+      <a href="studentdelete">DELETE STUDENT</a>
+      {% endblock %}

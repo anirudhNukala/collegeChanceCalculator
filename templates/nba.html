@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %} 
+
+    <h2>Basic HTML Table</h2>
+    <table style="width:100%" id="nba_table" class ="display">
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Team</th> 
+              <th>Position</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for player in players %}
+          <tr>
+              <td>{{player.name}}</td>
+              <td>{{player.team}}</td>
+              <td>{{player.Position}}</td>      
+          </tr>
+        {% endfor %}
+      </tbody>
+      </table>
+      {% endblock %}

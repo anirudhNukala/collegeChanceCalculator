@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %} 
+
+    <h2>Student List</h2>
+    <table style="width:100%" id="nba_table" class ="display">
+        <thead>
+          <tr>
+              <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for student in students %}
+        <tr>
+        <td><a href=
+            'studentdetails?id={{student.id}}'>{{student.name}}</a></td> 
+        <td><a href=
+          'studentdetails?id={{student.id}}'>{{student.id}}</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      </table>
+      <a href=".">BACK TO ALL COLLEGES</a> 
+      {% endblock %}

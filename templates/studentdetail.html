@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %} 
+
+    <h2>College Stats
+    </h2>
+    <table style="width:100%" id="nba_table" class ="display">
+        <thead>
+          <tr>
+              <th>Stat</th>
+              <th>Value</th> 
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+               <td>ACT Composite</td>
+               <td>{{student.act_composite}}</td>
+          </tr>
+          <tr>
+            <td>ACT English</td>
+            <td>{{student.act_english}}</td>
+          </tr>
+          <tr>
+            <td>ACT Math</td>
+            <td>{{student.act_math}}</td>
+       </tr>
+       <tr>
+        <td>SAT Composite</td>
+        <td>{{student.sat_composite}}</td>
+   </tr>
+   <tr>
+     <td>SAT English</td>
+     <td>{{student.sat_english}}</td>
+   </tr>
+   <tr>
+     <td>SAT Math</td>
+     <td>{{student.sat_math}}</td>
+</tr>
+      </tbody>
+      </table>
+      <a href="studentlist">BACK TO ALL STUDENTS</a> 
+      {% endblock %}

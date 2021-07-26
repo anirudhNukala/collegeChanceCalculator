@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<h1>Name Selector</h1>
+
+
+<form action="collegecolor" method = 'post'>
+    {% csrf_token %}
+    <select name="name" id="name">
+    {% for student in students %}
+    <option value={{student.id}}>{{student.name}}</option> 
+    {% endfor %}
+    </select>
+    <input type="submit" value = "Submit">
+</form>
+{% endblock %}

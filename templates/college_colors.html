@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %} 
+
+
+    <h2>Color College List</h2>
+    <table style="width:100%" id="nba_table" class ="display">
+        <thead>
+          <tr>
+              <th>Name</th>        
+          </tr>
+        </thead>
+        <tbody>
+       
+        {% for college,color in zippedlist %}
+          <tr >
+              <td ><a href=
+                'details?id={{college.id}}' class="{{color}}">{{college.name}}</a></td>            
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+      <a href="create">CREATE COLLEGE</a>
+      <a href="delete">DELETE COLLEGE</a>
+      <a href="studentlist">STUDENT LIST</a>
+      <a href="student">CREATE STUDENT</a>
+      <a href="studentdelete">DELETE STUDENT</a>
+      {% endblock %}
