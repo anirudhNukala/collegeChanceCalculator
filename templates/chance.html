@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %} 
+    {% load static %}
+    <img src="{% static '/satbellcurve.png' %}" alt="sat bell curve">
+    <img src="staticfiles/explanation.png" alt="explanation">
+  <h1>{{name}}Add New Student:</h1>
+  <form action="studentchance" method="POST">
+  {% csrf_token %} 
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name"><br><br>
+  <label for="act_composite">ACT Composite:</label><br>
+  <input type="text" id="act_composite" name="act_composite"><br><br>
+  <label for="act_english">ACT English:</label><br>
+  <input type="text" id="act_english" name="act_english"><br><br>
+  <label for="act_math">ACT Math:</label><br>
+  <input type="text" id="act_math" name="act_math"><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+   
+      {% endblock %}
