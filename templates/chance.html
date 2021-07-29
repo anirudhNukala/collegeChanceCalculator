@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %} 
     {% load static %}
-    <img src="{% static '/satbellcurve.png' %}" alt="sat bell curve">
-    <img src="staticfiles/explanation.png" alt="explanation">
+    <img src="{% static '/satbellcurve.png' %}" alt="sat bell curve" width="700" length="500">
+    <img src="{% static '/explanation.png' %}" alt="explanation" width="915" length="300">
   <h1>{{name}}Add New Student:</h1>
   <form action="studentchance" method="POST">
   {% csrf_token %} 
