@@ -3,11 +3,9 @@
     {% load static %}
     <img src="{% static '/satbellcurve.png' %}" alt="sat bell curve" width="700" length="500">
     <img src="{% static '/explanation.png' %}" alt="explanation" width="915" length="300">
-  <h1>{{name}}Add New Student:</h1>
+  <h1>{{name}}Check your College Chances here!</h1>
   <form action="studentchance" method="POST">
   {% csrf_token %} 
-  <label for="name">Name:</label><br>
-  <input type="text" id="name" name="name"><br><br>
   <label for="act_composite">ACT Composite:</label><br>
   <input type="text" id="act_composite" name="act_composite"><br><br>
   <label for="act_english">ACT English:</label><br>
