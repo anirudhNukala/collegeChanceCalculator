@@ -5,14 +5,31 @@
     <img src="{% static '/explanation.png' %}" alt="explanation" width="915" length="300">
   <h1>{{name}}Check your College Chances here!</h1>
   <form action="studentchance" method="POST">
-  {% csrf_token %} 
+  {% csrf_token %}
+  <p>SAT or ACT:</p>
+  <input type="radio" id="sat" name="sat_or_act" value="SAT" checked="checked" onclick="document.getElementById('sat_div').style.display='block';document.getElementById('act_div').style.display = 'none'">
+  <label for="sat">SAT</label><br>
+  <input type="radio" id="act" name="sat_or_act" value="ACT" onclick="document.getElementById('act_div').style.display='block';document.getElementById('sat_div').style.display = 'none'">
+  <label for="act">ACT</label><br>
+  <br>
+  <fieldset>
+    <legend>Score</legend>
+  <div id ="sat_div"> 
+  <label for="sat_english">SAT English:</label><br>
+  <input type="text" id="sat_english" name="sat_english"><br><br>
+  <label for="sat_math">SAT Math:</label><br>
+  <input type="text" id="sat_math" name="sat_math"><br><br>
+  </div>
+  <div id ="act_div" >
   <label for="act_composite">ACT Composite:</label><br>
   <input type="text" id="act_composite" name="act_composite"><br><br>
   <label for="act_english">ACT English:</label><br>
   <input type="text" id="act_english" name="act_english"><br><br>
   <label for="act_math">ACT Math:</label><br>
   <input type="text" id="act_math" name="act_math"><br><br>
+  </div>
   <input type="submit" value="Submit">
+</fieldset>
 </form>
 
    

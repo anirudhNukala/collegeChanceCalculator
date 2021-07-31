@@ -52,27 +52,46 @@ def statstudent(request, id):
     return render(request, "college_colors.html", {"colors":colors, "colleges":colleges, "zippedlist":zippedlist})
 
 def studentchance(request):
-    act_composite = int(request.POST['act_composite'])
-    act_math = int(request.POST['act_math'])
-    act_english = int(request.POST['act_english'])
     colleges = College.objects.all()
     colors = []
-    for college in colleges:
-        stats = college.AdmissionStats
-        scores = college.scores
-        act_composite50 = (scores.act_compostite25 + scores.act_composite75) / 2
-        act_english50 = (scores.act_english25 + scores.act_english75) / 2
-        act_math50 = (scores.act_math25 + scores.act_math75) / 2
-        if stats.male_selectivity < 15 or stats.male_yield > 60:
-            colors.append('dreamcollege')
-        elif act_composite > act_composite50 and act_english > act_english50 and act_math > act_math50 and stats.male_selectivity >= 15 and stats.male_selectivity <= 25:
-            colors.append('corecollege')
-        elif act_composite > act_composite50 and act_english > act_english50 and act_math > act_math50:
-            colors.append('safecollege')
-        else:
-            colors.append('dreamcollege')
-    print(colors)
-    zippedlist = zip(colleges,colors)
+    if request.POST['sat_or_act'] == 'ACT':
+        act_composite = int(request.POST['act_composite'])
+        act_math = int(request.POST['act_math'])
+        act_english = int(request.POST['act_english'])
+        for college in colleges:
+            stats = college.AdmissionStats
+            scores = college.scores
+            act_composite50 = (scores.act_compostite25 + scores.act_composite75) / 2
+            act_english50 = (scores.act_english25 + scores.act_english75) / 2
+            act_math50 = (scores.act_math25 + scores.act_math75) / 2
+            if stats.male_selectivity < 15 or stats.male_yield > 60:
+                colors.append('dreamcollege')
+            elif act_composite > act_composite50 and act_english > act_english50 and act_math > act_math50 and stats.male_selectivity >= 15 and stats.male_selectivity <= 25:
+                colors.append('corecollege')
+            elif act_composite > act_composite50 and act_english > act_english50 and act_math > act_math50:
+                colors.append('safecollege')
+            else:
+                colors.append('dreamcollege')
+        zippedlist = zip(colleges,colors)
+    else:
+        sat_math = int(request.POST['sat_math'])
+        sat_english = int(request.POST['sat_english'])
+        sat_composite = sat_math + sat_english
+        for college in colleges:
+            stats = college.AdmissionStats
+            scores = college.scores
+            sat_composite50 = (scores.sat_compostite25 + scores.sat_composite75) / 2
+            sat_english50 = (scores.sat_english25 + scores.sat_english75) / 2
+            sat_math50 = (scores.sat_math25 + scores.sat_math75) / 2
+            if stats.male_selectivity < 15 or stats.male_yield > 60:
+                colors.append('dreamcollege')
+            elif sat_composite > sat_composite50 and sat_english > sat_english50 and sat_math > sat_math50 and stats.male_selectivity >= 15 and stats.male_selectivity <= 25:
+                colors.append('corecollege')
+            elif sat_composite > sat_composite50 and sat_english > sat_english50 and sat_math > sat_math50:
+                colors.append('safecollege')
+            else:
+                colors.append('dreamcollege')
+        zippedlist = zip(colleges,colors)
     return render(request, "studentcolor.html", {"colors":colors, "colleges":colleges, "zippedlist":zippedlist})
 
 def student(request):
