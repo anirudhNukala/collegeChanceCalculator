@@ -3,22 +3,24 @@
     {% load static %}
     <img src="{% static '/satbellcurve.png' %}" alt="sat bell curve" width="700" length="500">
     <img src="{% static '/explanation.png' %}" alt="explanation" width="915" length="300">
-  <h1>{{name}}Check your College Chances here!</h1>
+  <h1 class="ms-3">{{name}}Check your College Chances here!</h1>
   <form action="studentchance" method="POST">
   {% csrf_token %}
-  <p>SAT or ACT:</p>
-  <input type="radio" id="sat" name="sat_or_act" value="SAT" checked="checked" onclick="document.getElementById('sat_div').style.display='block';document.getElementById('act_div').style.display = 'none'">
-  <label for="sat">SAT</label><br>
-  <input type="radio" id="act" name="sat_or_act" value="ACT" onclick="document.getElementById('act_div').style.display='block';document.getElementById('sat_div').style.display = 'none'">
-  <label for="act">ACT</label><br>
+  
+  <div class="form-check ms-3">    
+  <input class = "form-check-input" type="radio" id="sat" name="sat_or_act" value="SAT" checked="checked" onclick="document.getElementById('sat_div').style.display='block';document.getElementById('act_div').style.display = 'none'">
+  <label class="form-check-label" for="sat">SAT</label><br>
+  <input class = "form-check-input" type="radio" id="act" name="sat_or_act" value="ACT" onclick="document.getElementById('act_div').style.display='block';document.getElementById('sat_div').style.display = 'none'">
+  <label class="form-check-label" for="act">ACT</label><br>
+  </div>
   <br>
-  <fieldset>
+  <fieldset class="ms-3">
     <legend>Score</legend>
-  <div id ="sat_div"> 
+  <div id ="sat_div" class="input-group mb-3"> 
   <label for="sat_english">SAT English:</label><br>
-  <input type="text" id="sat_english" name="sat_english"><br><br>
+  <input type="text" class="form-control"  id="sat_english" name="sat_english"><br><br>
   <label for="sat_math">SAT Math:</label><br>
-  <input type="text" id="sat_math" name="sat_math"><br><br>
+  <input type="text" class="form-control" id="sat_math" name="sat_math"><br><br>
   </div>
   <div id ="act_div" >
   <label for="act_composite">ACT Composite:</label><br>
