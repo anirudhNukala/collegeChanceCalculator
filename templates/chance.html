@@ -1,38 +1,162 @@
-{% extends 'base.html' %}
-{% block content %} 
-    {% load static %}
-    <img src="{% static '/satbellcurve.png' %}" alt="sat bell curve" width="700" length="500">
-    <img src="{% static '/explanation.png' %}" alt="explanation" width="915" length="300">
-  <h1 class="ms-3">{{name}}Check your College Chances here!</h1>
-  <form action="studentchance" method="POST">
-  {% csrf_token %}
-  
-  <div class="form-check ms-3">    
-  <input class = "form-check-input" type="radio" id="sat" name="sat_or_act" value="SAT" checked="checked" onclick="document.getElementById('sat_div').style.display='block';document.getElementById('act_div').style.display = 'none'">
-  <label class="form-check-label" for="sat">SAT</label><br>
-  <input class = "form-check-input" type="radio" id="act" name="sat_or_act" value="ACT" onclick="document.getElementById('act_div').style.display='block';document.getElementById('sat_div').style.display = 'none'">
-  <label class="form-check-label" for="act">ACT</label><br>
-  </div>
-  <br>
-  <fieldset class="ms-3">
-    <legend>Score</legend>
-  <div id ="sat_div" class="input-group mb-3"> 
-  <label for="sat_english">SAT English:</label><br>
-  <input type="text" class="form-control"  id="sat_english" name="sat_english"><br><br>
-  <label for="sat_math">SAT Math:</label><br>
-  <input type="text" class="form-control" id="sat_math" name="sat_math"><br><br>
-  </div>
-  <div id ="act_div" >
-  <label for="act_composite">ACT Composite:</label><br>
-  <input type="text" id="act_composite" name="act_composite"><br><br>
-  <label for="act_english">ACT English:</label><br>
-  <input type="text" id="act_english" name="act_english"><br><br>
-  <label for="act_math">ACT Math:</label><br>
-  <input type="text" id="act_math" name="act_math"><br><br>
-  </div>
-  <input type="submit" value="Submit">
-</fieldset>
-</form>
+<!doctype html>
+<html lang="en">
+  {% load static %}
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-   
-      {% endblock %}
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+	
+  <link rel="stylesheet" type="text/css" href="static/style.css" />
+	<title>College Chance Calculator</title>
+</head>
+
+<body>
+	<div class="site-wrapper">
+		<header class="header">
+			<div class="header-container">
+				<h1 class="heading">College Chance Calculator</h1>
+			</div>
+		</header>
+		<main>
+			<div class="main-container">
+				<div class="carousel-container">
+					<div  id="carouselControls" class="carousel slide" data-bs-ride="carousel">
+						<div class="carousel-inner">
+							<div class="carousel-item active">
+								<img src="static/satbellcurve.png" class="d-block" alt="sat bell curve">
+							</div>
+							<div class="carousel-item">
+								<img src="static/explanation.png" class="d-block" alt="explanation">
+							</div>
+						</div>
+						<button class="carousel-control-prev" type="button" data-bs-target="#carouselControls"
+							data-bs-slide="prev">
+							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Previous</span>
+						</button>
+						<button class="carousel-control-next" type="button" data-bs-target="#carouselControls"
+							data-bs-slide="next">
+							<span class="carousel-control-next-icon" aria-hidden="true"></span>
+							<span class="visually-hidden">Next</span>
+						</button>
+					</div>
+				</div>
+				<div class="cal-wrapper container col-lg-12 px-4 pb-5">
+					<div class="cal-container container align-items-center rounded-3 border shadow-lg">
+						<div class="py-3"><h4 class="cal-heading">Check your College Chances here!</h4></div>
+						<div class="row form-wrapper">
+							<form action="studentchance" method="POST">
+                {% csrf_token %}
+							<div class="col l-block">
+								<!-- left block-->
+								<div class="d-flex flex-column h-100">
+									<div id="sat_btn"class="col category active" onclick="onSatClick()">
+										<span class="category-text">SAT</span>
+										<input class="form-check-input visually-hidden" type="radio" id="sat" name="sat_or_act"  checked="checked" 
+											value="SAT" >
+									</div>
+									<div id="act_btn" class="col category"  onclick="onActClick()">
+										<span class="category-text">ACT</span>
+										<input class="form-check-input visually-hidden" type="radio" id="act" name="sat_or_act" 
+											value="ACT">
+									</div>
+								</div>
+							</div>
+							<div class="col p-4 r-block bg-light">
+								<!-- right block-->
+								<legend>Score </legend>
+								<div id="sat_div" class="form active">
+									<div class="mb-3">
+										<label class="form-label" for="sat_english">SAT English:</label>
+										<input class="form-control" type="text" id="sat_english" name="sat_english">
+									</div>
+									<div class="mb-3">
+										<label class="form-label" for="sat_math">SAT Math:</label>
+										<input class="form-control" type="text" id="sat_math" name="sat_math">
+									</div>
+								</div>
+								<div id="act_div" class="form">
+									<div class="mb-3">
+										<label class="form-label" for="act_composite">ACT Composite:</label>
+										<input class="form-control" type="text" id="act_composite" name="act_composite">
+									</div>
+									<div class="mb-3">
+										<label class="form-label" for="act_english">ACT English:</label>
+										<input class="form-control" type="text" id="act_english" name="act_english">
+									</div>
+									<div class="mb-3">
+										<label class="form-label" for="act_math">ACT Math:</label>
+										<input class="form-control" type="text" id="act_math" name="act_math">
+									</div>
+								</div>
+								<div class="">
+									<!-- <input type="submit" value="Submit"> -->
+									<button class="btn btn-primary" type="submit">Submit</button>
+								</div>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+		<footer class="footer">
+			<div>&#169; 2021 Copyright</div>
+		</footer>
+	</div>
+
+	<!-- JS -->
+	<script src="https://code.jquery.com/jquery-3.6.0.js"
+		integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+		crossorigin="anonymous"></script>
+
+	<!-- Other JS -->
+	<script type="text/javascript" charset="utf8"
+		src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
+	<!-- scripts -->
+	<script>
+		$(document).ready(function () {
+			$('#nba_table').DataTable();
+		});
+
+		function onSatClick() {
+			// document.getElementById('sat_div').style.display = 'block';
+			// document.getElementById('act_div').style.display = 'none';
+			
+			$('#sat').prop("checked", true);
+			$('#act').prop("checked", false);
+
+			$('#sat_btn').addClass('active');
+			$('#act_btn').removeClass('active');
+
+			$('#sat_div').addClass('active');
+			$('#act_div').removeClass('active');
+		}
+		
+		function onActClick() {
+			// document.getElementById('sat_div').style.display = 'none';
+			// document.getElementById('act_div').style.display = 'block';
+
+			$('#act').prop("checked", true);
+			$('#sat').prop("checked", false);
+
+			$('#act_btn').addClass('active');
+			$('#sat_btn').removeClass('active');
+
+			$('#act_div').addClass('active');
+			$('#sat_div').removeClass('active');
+		}
+	</script>
+</body>
+
+</html>
