@@ -26,6 +26,10 @@ body {
   text-align: center;
 }
 
+main {
+  min-height: 500px;
+}
+
 .heading {
   margin: 0px;
 }
@@ -51,7 +55,7 @@ body {
 
 .cal-heading {
   font-weight: 700;
-  color: #004fa3;
+  color: #182449;
   margin-bottom: 0px;
 }
 
@@ -66,23 +70,23 @@ body {
   background-color: #fff;
   font-weight: bold;
   font-size: 24px;
-  color: #004fa3;
+  color: #182449;
   cursor: pointer;
   text-align: center;
   position: relative;
 }
 
-.category.active{
-  background-color: #f8f9fa;
+.category.active {
+  background-color: #e9ecef;
 }
-.form-wrapper{
+.form-block {
   min-height: 400px;
 }
-.form{
+.form {
   display: none;
 }
 
-.form.active{
+.form.active {
   display: block;
 }
 
@@ -94,7 +98,63 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.r-block, .l-block {
-  padding-right:0px;
-  padding-left:0px;
+.r-block,
+.l-block {
+  padding-right: 0px;
+  padding-left: 0px;
+  background-color: #e9ecef;
+}
+
+.btn-primary {
+  background-color: #162249;
+  border-color: #162249;
+}
+
+.btn .fa {
+  margin-right: 7px;
+}
+
+.table tr td a {
+  color: #182449;
+  text-decoration: none;
+}
+
+.table tr td a:hover,
+.table tr td a:active,
+.table tr td a:visited {
+  color: #182449;
+  font-weight: bold;
+}
+
+.table tr td:hover {
+  font-weight: bold;
+}
+
+/*
+ * Table styles
+ */
+
+.table {
+  --bs-table-hover-bg: #c9d2ec;
+}
+
+.table-dark {
+  --bs-table-bg: #162249;
+  border-color: #162249;
+  color: #fff;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #162249;
+  border-color: #162249;
+  color: #fff;
+}
+
+.pagination .page-item .page-link {
+  color: #182449;
+}
+
+.page-link:hover {
+  color: #182449;
+  background-color: #e9ecef;
 }
