@@ -90,7 +90,7 @@ def studentchance(request):
             elif sat_composite > sat_composite50 and sat_english > sat_english50 and sat_math > sat_math50:
                 colors.append('table-success')
             else:
-                colors.append('dreamcollege')
+                colors.append('table-danger')
         zippedlist = zip(colleges,colors)
     return render(request, "studentcolor.html", {"colors":colors, "colleges":colleges, "zippedlist":zippedlist})
 
