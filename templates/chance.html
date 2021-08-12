@@ -51,58 +51,61 @@
 				<div class="cal-wrapper container col-lg-12 px-4 pb-5">
 					<div class="cal-container container align-items-center rounded-3 border shadow-lg">
 						<div class="py-3"><h4 class="cal-heading">Check your College Chances here!</h4></div>
-						<div class="row form-wrapper">
+						<div>
 							<form action="studentchance" method="POST">
-                {% csrf_token %}
-							<div class="col l-block">
-								<!-- left block-->
-								<div class="d-flex flex-column h-100">
-									<div id="sat_btn"class="col category active" onclick="onSatClick()">
-										<span class="category-text">SAT</span>
-										<input class="form-check-input visually-hidden" type="radio" id="sat" name="sat_or_act"  checked="checked" 
-											value="SAT" >
+								{% csrf_token %}
+								<div class="row form-block">
+									<div class="col l-block">
+										<!-- left block-->
+										<div class="d-flex flex-column h-100">
+											<div id="sat_btn" class="col category active" onclick="onSatClick()">
+												<span class="category-text">SAT</span>
+												<input class="form-check-input visually-hidden" type="radio" id="sat"
+													name="sat_or_act" checked="checked" value="SAT">
+											</div>
+											<div id="act_btn" class="col category" onclick="onActClick()">
+												<span class="category-text">ACT</span>
+												<input class="form-check-input visually-hidden" type="radio" id="act"
+													name="sat_or_act" value="ACT">
+											</div>
+										</div>
 									</div>
-									<div id="act_btn" class="col category"  onclick="onActClick()">
-										<span class="category-text">ACT</span>
-										<input class="form-check-input visually-hidden" type="radio" id="act" name="sat_or_act" 
-											value="ACT">
+									<div class="col p-4 r-block">
+										<!-- right block-->
+										<legend>Score </legend>
+										<div id="sat_div" class="form active">
+											<div class="mb-3">
+												<label class="form-label" for="sat_english">SAT English:</label>
+												<input class="form-control" type="text" id="sat_english"
+													name="sat_english">
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="sat_math">SAT Math:</label>
+												<input class="form-control" type="text" id="sat_math" name="sat_math">
+											</div>
+										</div>
+										<div id="act_div" class="form">
+											<div class="mb-3">
+												<label class="form-label" for="act_composite">ACT Composite:</label>
+												<input class="form-control" type="text" id="act_composite"
+													name="act_composite">
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="act_english">ACT English:</label>
+												<input class="form-control" type="text" id="act_english"
+													name="act_english">
+											</div>
+											<div class="mb-3">
+												<label class="form-label" for="act_math">ACT Math:</label>
+												<input class="form-control" type="text" id="act_math" name="act_math">
+											</div>
+										</div>
+										<div>
+											<button class="btn btn-primary" type="submit">Submit</button>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col p-4 r-block bg-light">
-								<!-- right block-->
-								<legend>Score </legend>
-								<div id="sat_div" class="form active">
-									<div class="mb-3">
-										<label class="form-label" for="sat_english">SAT English:</label>
-										<input class="form-control" type="text" id="sat_english" name="sat_english">
-									</div>
-									<div class="mb-3">
-										<label class="form-label" for="sat_math">SAT Math:</label>
-										<input class="form-control" type="text" id="sat_math" name="sat_math">
-									</div>
-								</div>
-								<div id="act_div" class="form">
-									<div class="mb-3">
-										<label class="form-label" for="act_composite">ACT Composite:</label>
-										<input class="form-control" type="text" id="act_composite" name="act_composite">
-									</div>
-									<div class="mb-3">
-										<label class="form-label" for="act_english">ACT English:</label>
-										<input class="form-control" type="text" id="act_english" name="act_english">
-									</div>
-									<div class="mb-3">
-										<label class="form-label" for="act_math">ACT Math:</label>
-										<input class="form-control" type="text" id="act_math" name="act_math">
-									</div>
-								</div>
-								<div class="">
-									<!-- <input type="submit" value="Submit"> -->
-									<button class="btn btn-primary" type="submit">Submit</button>
-								</div>
-							</div>
-							</form>
-						</div>
+							</form>					
 					</div>
 				</div>
 			</div>
