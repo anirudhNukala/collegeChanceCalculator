@@ -65,13 +65,13 @@ def studentchance(request):
             act_english50 = (scores.act_english25 + scores.act_english75) / 2
             act_math50 = (scores.act_math25 + scores.act_math75) / 2
             if stats.male_selectivity < 15 or stats.male_yield > 60:
-                colors.append('dreamcollege')
+                colors.append('table-danger')
             elif act_composite > act_composite50 and act_english > act_english50 and act_math > act_math50 and stats.male_selectivity >= 15 and stats.male_selectivity <= 25:
-                colors.append('corecollege')
+                colors.append('table-warning')
             elif act_composite > act_composite50 and act_english > act_english50 and act_math > act_math50:
-                colors.append('safecollege')
+                colors.append('table-success')
             else:
-                colors.append('dreamcollege')
+                colors.append('table-danger')
         zippedlist = zip(colleges,colors)
     else:
         sat_math = int(request.POST['sat_math'])

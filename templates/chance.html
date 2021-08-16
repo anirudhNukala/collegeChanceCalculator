@@ -52,7 +52,7 @@
 					<div class="cal-container container align-items-center rounded-3 border shadow-lg">
 						<div class="py-3"><h4 class="cal-heading">Check your College Chances here!</h4></div>
 						<div>
-							<form action="studentchance" method="POST">
+							<form action="studentchance" onsubmit="return testInputs()" method="POST">
 								{% csrf_token %}
 								<div class="row form-block">
 									<div class="col l-block">
@@ -131,10 +131,84 @@
 		$(document).ready(function () {
 			$('#nba_table').DataTable();
 		});
+		function testInputs()
+		{
+			var data=$('input[name=sat_or_act]:checked').val();
+			if (data == "ACT")
+			{
+				let act_english = $('#act_english').val()
+				let act_math = $('#act_math').val()
+				let act_composite = $('#act_composite').val()
+				if (isNaN(act_english))
+				{
+					alert('ACT English has to be a number');
+					return false
+				}
+				if (isNaN(act_math))
+				{
+					alert('ACT Math has to be a number');
+					return false
+				}
+				if (isNaN(act_composite))
+				{
+					alert('ACT Composite has to be a number');
+					return false
+				}
+				act_english = parseInt(act_english)
+				if (!(act_english >= 1 && act_english <= 36))
+				{				
+					alert('ACT English is an invalid score (1-36)')
+					return false
+				}
+				act_math = parseInt(act_math)
+				if (!(act_math >= 1 && act_math <= 36))
+				{
+					alert('ACT Math is an invalid score (1-36)')
+					return false
+				}
+				act_composite = parseInt(act_composite)
+				if (!(act_composite >= 1 && act_composite <= 36))
+				{
+					alert('ACT Composite is an invalid score (1-36)')
+					return false
+				}
+			}
+			else if (data == "SAT")
+			{
+				let sat_english = $('#sat_english').val()
+				let sat_math = $('#sat_math').val()
+				if (isNaN(sat_english))
+				{
+					alert('SAT English has to be a number');
+					return false
+				}
+				if (isNaN(sat_math))
+				{
+					alert('SAT Math has to be a number');
+					return false
+				}
+				sat_english = parseInt(sat_english)
+				if (!(sat_english >= 200 && sat_english <= 800))		
+				{		
+					alert('SAT English is an invalid score (200-800)')
+					return false
+				}
+				sat_math = parseInt(sat_math)
+				if (!(sat_math >= 200 && sat_math <= 800))
+				{
+					alert('SAT Math is an invalid score (200-800)')
+					return false
+				}
+			}	
 
+			return true ;
+	
+		}
 		function onSatClick() {
 			// document.getElementById('sat_div').style.display = 'block';
+			// $('#sat')  is same as document.getElementById('sat');
 			// document.getElementById('act_div').style.display = 'none';
+
 			
 			$('#sat').prop("checked", true);
 			$('#act').prop("checked", false);
