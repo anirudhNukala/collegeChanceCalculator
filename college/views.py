@@ -1,6 +1,10 @@
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse 
 from django.shortcuts import render
 from .models import College, AdmissionStats, Scores, Student
+from django.http import HttpResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import AdmissionSerializer, CollegeSerializer
 # Create your views here.
 def list(request):
     colleges = College.objects.all()
@@ -203,5 +207,70 @@ def submit(request):
      scores.save()
      college.save()
      return list(request)
+
+@api_view(['GET'])
+# /colleges?act_or_sat=act|sat&
+def college_collection(request):
+    print('this college_collection method')
+    if request.method == 'GET':
+        colleges = College.objects.all()
+        sat_or_act = request.GET['sat_or_act']
+        if sat_or_act == "ACT":
+            act_composite = int(request.GET['act_composite'])
+            act_math = int(request.GET['act_math'])
+            act_english = int(request.GET['act_english'])
+            for college in colleges:
+                stats = college.AdmissionStats
+                scores = college.scores
+                act_composite50 = (scores.act_compostite25 + scores.act_composite75) / 2
+                act_english50 = (scores.act_english25 + scores.act_english75) / 2
+                act_math50 = (scores.act_math25 + scores.act_math75) / 2
+            if stats.male_selectivity < 15 or stats.male_yield > 60:
+                college.color = 'red'
+                print('1')
+            elif act_composite > act_composite50 and act_english > act_english50 and act_math > act_math50 and stats.male_selectivity >= 15 and stats.male_selectivity <= 25:
+                college.color = 'yellow'
+                print('2')
+            elif act_composite > act_composite50 and act_english > act_english50 and act_math > act_math50:
+                college.color = 'green'
+                print('3')
+            else:
+                college.color = 'red'
+                print('4')
+        elif sat_or_act == "SAT":
+            sat_math = int(request.GET['sat_math'])
+            sat_english = int(request.GET['sat_english'])
+            sat_math = int(request.POST['sat_math'])
+            sat_composite = sat_math + sat_english
+            for college in colleges:
+                stats = college.AdmissionStats
+                scores = college.scores
+                sat_composite50 = (scores.sat_compostite25 + scores.sat_composite75) / 2
+                sat_english50 = (scores.sat_english25 + scores.sat_english75) / 2
+                sat_math50 = (scores.sat_math25 + scores.sat_math75) / 2
+                if stats.male_selectivity < 15 or stats.male_yield > 60:
+                    college.color = 'red'
+                elif sat_composite > sat_composite50 and sat_english > sat_english50 and sat_math > sat_math50 and stats.male_selectivity >= 15 and stats.male_selectivity <= 25:
+                    college.color = 'yellow'
+                elif sat_composite > sat_composite50 and sat_english > sat_english50 and sat_math > sat_math50:
+                    college.color = 'green'
+                else:
+                    college.color = 'red'
+        serializer = CollegeSerializer(colleges, many=True)
+        return Response(serializer.data)
+
+@api_view(['GET'])
+def college_element(request, pk):
+    print('this college_element method')
+    try:
+        aCollege = College.objects.get(pk=pk)      
+    except College.DoesNotExist:
+        return HttpResponse(status=404)
+    if request.method == 'GET':
+        serializer = AdmissionSerializer(aCollege)
+        return Response(serializer.data)
+
+def map(request):
+    pass
      
 

@@ -31,6 +31,8 @@ class College(models.Model):
     ipeds = models.IntegerField()
     scores = models.OneToOneField(Scores, on_delete=models.CASCADE,)
     AdmissionStats = models.OneToOneField(AdmissionStats, on_delete=models.CASCADE,)
+    # create a new property called color which is transient
+    color = 'purple'
     def __str__(self):
         return self.name
 

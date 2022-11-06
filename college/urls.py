@@ -18,5 +18,8 @@ urlpatterns = [
     path('studentsubmitdelete', views.studentsubmitdelete, name='student.submitdelete'),
     path('checkstatus', views.checkstatus, name='checkstatus'),
     path('collegecolor', views.collegecolor, name='collegecolor'),
-    path('studentchance', views.studentchance, name='studenchance')
+    path('studentchance', views.studentchance, name='studenchance'),
+    path('colleges/<int:pk>/', views.college_element, name='college-detail'),
+    path('colleges', views.college_collection, name='colleges'),
+    path('map', views.map, name='map')
     ]
